@@ -6,17 +6,20 @@
 
 {% if users_html %}
         
-
+<h1 class="display-4 text-center">welcome</h1>
 <div class="text-center">
 <table class="table">
-    <thead>
+  <thead class="thead-dark">
+
       <tr>
         {% for keys,values in users_html[0].items() %}
             <th scope="col">{{keys}}</th>
             
         {% endfor %}
-        <th scope="col">Delete</th>
-        
+
+          <th scope="col">Update</th>
+          <th scope="col">Delete</th>
+
       </tr>
     </thead>
     <tbody>
@@ -25,8 +28,9 @@
                 {% for keys,values in user.items() %}
                         <th scope="col">{{values}}</th>
                 {% endfor %}
-                <th><a class="btn btn-danger" href="{{url_for('delete_doc',id =user._id)}}">Delete</a></th>
                 <th><a class="btn btn-primary" href="{{url_for('update_doc',id =user._id)}}">update</a></th>
+                <th><a class="btn btn-danger"  href="{{url_for('delete_doc',id =user._id)}}">Delete</a></th>
+
 
             </tr>
         {% endfor %}

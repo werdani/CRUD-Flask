@@ -1,21 +1,15 @@
 {% extends 'base.html' %}
 {% block start %}
-<div class="container w-50 mt-5">
-<form action="/update/{{user['id']}}" method="post">
-    <div class="form-group">
-      <label for="exampleInputEmail1">name</label>
-      <input type="text" class="form-control" name="name" placeholder="Enter name">
+    <div class="text-center">
+        <form action="{{ url_for('update_doc', id= user_html._id)}}" method="post">
+            <p>Enter Name</p>
+            <input type="text" name="name" value={{user_html.name}}/>
+            <p>Enter Age</p>
+            <input type="text" name="age" value={{user_html.age}}/>
+            <p>Enter Location</p>
+            <input type="text" name="location" value={{user_html.location}}/>
+            <input type="submit" value="submit"/>
+        </form>
     </div>
-    <div class="form-group">
-        <label for="exampleInputEmail1">age</label>
-        <input type="number" class="form-control" name="age" placeholder="Enter age">
-      </div>
-      <div class="form-group">
-        <label for="exampleInputEmail1">location</label>
-        <input type="text" class="form-control" name="location" placeholder="Enter location">
-      </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-</div>
   {% endblock %}

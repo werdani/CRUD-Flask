@@ -33,15 +33,19 @@ def delete_doc(id):
     return redirect(url_for('retrieve_doc'))
 
 ############################# to update table ########################## done
-@app.route('/update')
-def update_doc():
-    id=int(request.args.get("id"))
-    name= request.args.get("name")
-    age= request.args.get("age")
-    location= request.args.get("location")
-    user_flask_collection =mongo.db.users
-    user_flask_collection.update_one({"_id":int(id)},{'$set':{"_id":id,"name":name,"age":age,"location":location}})
-    return "user updated .."
+@app.route('/update/<int:id>', methods=['GET', 'POST'])
+def update_doc(id):
+    if request.method == 'GET':
+        user_flask_collection = mongo.db.users
+        result = user_flask_collection.find_one({"_id":id})
+        return render_template('edituser.html',user_html=result)
+    else:
+        name= request.form.get("name")
+        age= request.form.get("age")
+        location= request.form.get("location")
+        user_flask_collection =mongo.db.users
+        user_flask_collection.update_one({"_id":int(id)},{'$set':{"_id":id,"name":name,"age":age,"location":location}})
+    return redirect(url_for('retrieve_doc'))
 
 ############################# to create table ####################### done
 @app.route('/adduser', methods=['GET', 'POST'])
