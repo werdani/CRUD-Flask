@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %} Add user {% endblock %}
+
+{% block start %}
+    <div class="text-center">
+        <form action="/adduser" method="post">
+            <p>Enter Name</p>
+            <input type="text" name="name"/>
+            <p>Enter Age</p>
+            <input type="text" name="age"/>
+            <p>Enter Location</p>
+            <input type="text" name="location"/>
+            <input type="submit" value="submit"/>
+        </form>
+    </div>
+
+{% endblock %}

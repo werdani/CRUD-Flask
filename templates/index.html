@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %} Index {% endblock %}
+
+{% block start %}
+
+{% if users_html %}
+        
+
+<div class="text-center">
+<table class="table">
+    <thead>
+      <tr>
+        {% for keys,values in users_html[0].items() %}
+            <th scope="col">{{keys}}</th>
+            
+        {% endfor %}
+        <th scope="col">Delete</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+        {% for user in users_html %}
+            <tr>
+                {% for keys,values in user.items() %}
+                        <th scope="col">{{values}}</th>
+                {% endfor %}
+                <th><a class="btn btn-danger" href="{{url_for('delete_doc',id =user._id)}}">Delete</a></th>
+                <th><a class="btn btn-primary" href="{{url_for('update_doc',id =user._id)}}">update</a></th>
+
+            </tr>
+        {% endfor %}
+        
+     
+    </tbody>
+  </table>  
+
+
+  {% endif %}  
+  <th><a class="btn btn-success w-75" href="{{url_for('create_doc')}}">Add user</a></th>
+</div>
+{% endblock %}
